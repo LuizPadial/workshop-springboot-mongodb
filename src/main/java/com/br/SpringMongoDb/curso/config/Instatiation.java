@@ -3,6 +3,7 @@ package com.br.SpringMongoDb.curso.config;
 import com.br.SpringMongoDb.curso.domain.Post;
 import com.br.SpringMongoDb.curso.domain.User;
 import com.br.SpringMongoDb.curso.dto.AuthorDTO;
+import com.br.SpringMongoDb.curso.dto.ComentDTO;
 import com.br.SpringMongoDb.curso.repository.PostRepository;
 import com.br.SpringMongoDb.curso.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class Instatiation implements CommandLineRunner {
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
         Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viajem", "Vou viajar para Santos", new AuthorDTO(maria));
 
+        ComentDTO c1 = new ComentDTO("Boa viagem mano", sdf.parse("21/03/2018"), new AuthorDTO(alex));
+
+        post1.getComents().addAll(Arrays.asList(c1));
 
         postRepository.saveAll(Arrays.asList(post1));
 
